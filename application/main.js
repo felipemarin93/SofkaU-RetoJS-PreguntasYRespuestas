@@ -1,8 +1,8 @@
-import { data,player } from "../db/data.js";
-
+import { data } from "../db/data.js";
+import { player } from "./player.js";
 let userLogin = "";
 
-let userActive = getUser();
+
 const container = document.querySelector(".container");
 container.classList.add("container-lg","d-flex","justify-content-center","align-items-center","mt-5");
 container.style.height = "680 px";
@@ -18,11 +18,8 @@ userName.addEventListener('change', (e) => {
 function almacenar(params) {
     userLogin = params
 }
-console.log(userLogin);
 
-function login(usuario) {
-    localStorage.setItem(usuario, 0)
-}
+
 
 //crear texto display position absolut
 const buttonOk = document.createElement("button");
@@ -34,12 +31,16 @@ buttonOk.innerHTML = "Enviar";
 surrenderButton.innerHTML = "Rendirse";
 const image = document.createElement("img");
 
+
 buttonOk.onclick = () => toSend();
 
 surrenderButton.onclick = () => surrender();
+/*
 container.appendChild(userName);
 container.appendChild(buttonOk);
 container.appendChild(image);
+*/
+container.append(userName,buttonOk,image);
 let question;
 const tdA = document.createElement("td");
 const btnA = document.createElement("button");
@@ -60,16 +61,14 @@ btnD.className = "btn btn-outline-warning";
 let category = 0
 
 function toSend() {
-    let user = player(userActive);
-   
-    localStorage.setItem("player", JSON.stringify(user));
+    localStorage.setItem(userLogin,0);
     container.innerHTML = "";
-    nuevaPregunta();
+    newQuestion();
     
 }
  
 
-function nuevaPregunta() {
+function newQuestion() {
     const containerQuestions = document.createElement("div");
     containerQuestions.classList.add("d-flex","flex-column","justify-content-between","align-items-center");    
     const categoria = data[category];
@@ -116,48 +115,39 @@ tdD.addEventListener('click', async (e) => {
     validation(3);
 });
 
-function getUser() {
-    const activePlayer = JSON.parse(localStorage.getItem('player'));
-    return activePlayer;
-}
-/*
-function getPoints() {
-    const points = JSON.parse(localStorage.getItem('point'));
-    return activePlayer;
-}
-*/
 
-getUser();
-
-let user = getUser();
+let points = localStorage.getItem(userLogin);
 
 function validation(answer) {
     container.innerHTML = "";
     
     if (question.answers[answer].correctAnswer) {
-        user.prize += 100;
-        localStorage.setItem("player",JSON.stringify(user));
-        localStorage.setItem(user.name, user.prize);
+        
+        localStorage.setItem(userLogin, points = points +100);
         
         if(category<data.length-1){
             category += 1;
-            nuevaPregunta();          
+            newQuestion();          
         }else{
-            alert(`Has ganado, puntos: ${user.prize}`)
+            youWon();
             location.reload();         
         }  
         
-    }  else youLose();
+    }  else youLost();
 }
 
 function surrender() {
-    alert(`Has salido, puntos: ${user.prize}`);
+    alert(`Has salido, puntos: ${localStorage.getItem(userLogin)}`);
     location.reload();
 }
 
-function youLose() {
-    localStorage.setItem(nombre.value, 0);
-    alert(`Lo siento has perdido, puntos: ${user.prize}`);
+function youLost() {
+    alert(`Lo siento has perdido, puntos: ${localStorage.getItem(userLogin)}`);
+    location.reload();
+}
+
+function youWon() {  
+    alert(`Has ganado el Juego, acumulaste ${localStorage.getItem(userLogin)} puntos`);
     location.reload();
 }
 
