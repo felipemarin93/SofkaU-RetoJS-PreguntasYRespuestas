@@ -1,15 +1,19 @@
 import { data } from "../db/data.js";
 import { player } from "./player.js";
+
+
+let welcomeMessage = window.alert('Bienvenid@ al Juego de preguntas y respuestas');
+
 let userLogin = "";
 
 
 const container = document.querySelector(".container");
 container.classList.add("container-lg","d-flex","justify-content-center","align-items-center","mt-5");
-container.style.height = "680 px";
+container.style.height = "1200 px";
 const userName = document.createElement("input");
 userName.type = "text";
 userName.id = "nombre";
-userName.placeholder = "Favor ingrese su nombre"
+userName.placeholder = "Ingrese su nombre"
 
 userName.addEventListener('change', (e) => {
     almacenar(e.target.value)
@@ -24,7 +28,8 @@ function almacenar(params) {
 //crear texto display position absolut
 const buttonOk = document.createElement("button");
 buttonOk.className = "btn btn-outline-success";
-//buttonOk.classList.add("btn btn-outline-success");//"btn","btn-info","ms-2","mt-2");
+//buttonOk.className = "ms-2";
+buttonOk.classList.add("btn","btn-outline-success","ms-3");//"btn","btn-info","ms-2","mt-2");
 const surrenderButton = document.createElement("button");
 surrenderButton.classList.add("btn","btn-outline-danger","btn-lg","w-50","ms-2","mt-2");
 buttonOk.innerHTML = "Enviar";
@@ -39,21 +44,21 @@ container.append(userName,buttonOk,image);
 let question;
 const tdA = document.createElement("td");
 const btnA = document.createElement("button");
-btnA.className = "btn btn-outline-warning";
+btnA.className = "btn btn-outline-info";
 
 const tdB = document.createElement("td");
 const btnB = document.createElement("button");
-btnB.className = "btn btn-outline-warning";
+btnB.className = "btn btn-outline-info";
 
 const tdC = document.createElement("td");
 const btnC = document.createElement("button");
-btnC.className = "btn btn-outline-warning";
+btnC.className = "btn btn-outline-info";
 
 const tdD = document.createElement("td");
 const btnD = document.createElement("button");
-btnD.className = "btn btn-outline-warning";
+btnD.className = "btn btn-outline-info";
 
-let category = 0
+let category = 0;
 
 function toSend() {
     localStorage.setItem(userLogin,0);
@@ -70,13 +75,13 @@ function newQuestion() {
     question = categoria.questions[Math.floor(Math.random()*categoria.questions.length)]
 
     //Creación titulo 
-    
+
     const title = document.createElement("h1");
     title.classList.add("h1");
     //Creación tabla
 
     const table = document.createElement("table");
-    table.classList.add("table","fs-2","w-75");
+    table.classList.add("table","fs-2","w-100","table_style","table-borderless","text-center");
     //Creación de Filas
     const tr1 = document.createElement("tr");
     const tr2 = document.createElement("tr");
