@@ -31,15 +31,10 @@ buttonOk.innerHTML = "Enviar";
 surrenderButton.innerHTML = "Rendirse";
 const image = document.createElement("img");
 
-
 buttonOk.onclick = () => toSend();
 
 surrenderButton.onclick = () => surrender();
-/*
-container.appendChild(userName);
-container.appendChild(buttonOk);
-container.appendChild(image);
-*/
+
 container.append(userName,buttonOk,image);
 let question;
 const tdA = document.createElement("td");
@@ -73,12 +68,20 @@ function newQuestion() {
     containerQuestions.classList.add("d-flex","flex-column","justify-content-between","align-items-center");    
     const categoria = data[category];
     question = categoria.questions[Math.floor(Math.random()*categoria.questions.length)]
+
+    //Creación titulo 
+    
     const title = document.createElement("h1");
-    title.classList.add("h1");    
+    title.classList.add("h1");
+    //Creación tabla
+
     const table = document.createElement("table");
-    table.classList.add("table","table-info","fs-2","w-75");
+    table.classList.add("table","fs-2","w-75");
+    //Creación de Filas
     const tr1 = document.createElement("tr");
     const tr2 = document.createElement("tr");
+    const tr3 = document.createElement("tr");
+    const tr4 = document.createElement("tr");
     
     btnA.textContent = `A: ${question.answers[0].option}`;
     tdA.appendChild(btnA);
@@ -89,10 +92,22 @@ function newQuestion() {
     btnD.textContent = `D: ${question.answers[3].option}`;
     tdD.appendChild(btnD);
 
+    /*
     table.append(tr1);
     tr1.append(tdA, tdB);
     table.append(tr2);
     tr2.append(tdC, tdD);
+    */
+
+    table.append(tr1);
+    tr1.append(tdA);
+    table.append(tr2);
+    tr2.append(tdB);
+    table.append(tr3);
+    tr3.append(tdC);
+    table.append(tr4);
+    tr4.append(tdD);
+
     title.innerHTML = question.question;
     containerQuestions.append(title,table,surrenderButton,image);
     container.append(containerQuestions);
@@ -137,7 +152,7 @@ function validation(answer) {
 }
 
 function surrender() {
-    alert(`Has salido, puntos: ${localStorage.getItem(userLogin)}`);
+    alert(`Has abandonado, puntos: ${localStorage.getItem(userLogin)}`);
     location.reload();
 }
 
@@ -147,7 +162,7 @@ function youLost() {
 }
 
 function youWon() {  
-    alert(`Has ganado el Juego, acumulaste ${localStorage.getItem(userLogin)} puntos`);
+    alert(`Has ganado el Juego, Tus puntos: ${localStorage.getItem(userLogin)}`);
     location.reload();
 }
 
