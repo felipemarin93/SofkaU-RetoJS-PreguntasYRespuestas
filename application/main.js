@@ -11,6 +11,7 @@ const container = document.querySelector(".container");
 container.classList.add("container-lg","d-flex","justify-content-center","align-items-center","mt-5");
 container.style.height = "1200 px";
 const userName = document.createElement("input");
+userName.classList.add = ("w-25");
 userName.type = "text";
 userName.id = "nombre";
 userName.placeholder = "Ingrese su nombre"
@@ -29,7 +30,7 @@ function almacenar(params) {
 const buttonOk = document.createElement("button");
 buttonOk.className = "btn btn-outline-success";
 //buttonOk.className = "ms-2";
-buttonOk.classList.add("btn","btn-outline-success","ms-3");//"btn","btn-info","ms-2","mt-2");
+buttonOk.classList.add("btn","btn-outline-success","ms-2","fs-8","btn-lg","p-3","my-2");
 const surrenderButton = document.createElement("button");
 surrenderButton.classList.add("btn","btn-outline-danger","btn-lg","w-50","ms-2","mt-2");
 buttonOk.innerHTML = "Enviar";
@@ -44,19 +45,19 @@ container.append(userName,buttonOk,image);
 let question;
 const tdA = document.createElement("td");
 const btnA = document.createElement("button");
-btnA.className = "btn btn-outline-info";
+btnA.className = "btn btn-outline-info fs-2 btn-lg p-3 my-2";
 
 const tdB = document.createElement("td");
 const btnB = document.createElement("button");
-btnB.className = "btn btn-outline-info";
+btnB.className = "btn btn-outline-info fs-2 btn-lg p-3 my-2";
 
 const tdC = document.createElement("td");
 const btnC = document.createElement("button");
-btnC.className = "btn btn-outline-info";
+btnC.className = "btn btn-outline-info fs-2 btn-lg p-3 my-2";
 
 const tdD = document.createElement("td");
 const btnD = document.createElement("button");
-btnD.className = "btn btn-outline-info";
+btnD.className = "btn btn-outline-info fs-2 btn-lg p-3 my-2";
 
 let category = 0;
 
@@ -81,7 +82,7 @@ function newQuestion() {
     //Creación tabla
 
     const table = document.createElement("table");
-    table.classList.add("table","fs-2","w-100","table_style","table-borderless","text-center");
+    table.classList.add("table","fs-3","w-100","table_style","table-borderless","text-center");
     //Creación de Filas
     const tr1 = document.createElement("tr");
     const tr2 = document.createElement("tr");
@@ -97,12 +98,7 @@ function newQuestion() {
     btnD.textContent = `D: ${question.answers[3].option}`;
     tdD.appendChild(btnD);
 
-    /*
-    table.append(tr1);
-    tr1.append(tdA, tdB);
-    table.append(tr2);
-    tr2.append(tdC, tdD);
-    */
+
 
     table.append(tr1);
     tr1.append(tdA);
@@ -170,4 +166,9 @@ function youWon() {
     alert(`Has ganado el Juego, Tus puntos: ${localStorage.getItem(userLogin)}`);
     location.reload();
 }
+
+for (var i = 0; i < localStorage.length; i++) {
+    console.log(localStorage.getItem(localStorage.key(i)));
+  }
+
 
