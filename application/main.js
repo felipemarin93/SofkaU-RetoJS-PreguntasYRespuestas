@@ -28,9 +28,7 @@ function almacenar(params) {
 
 //crear texto display position absolut
 const buttonOk = document.createElement("button");
-buttonOk.className = "btn btn-outline-success";
-//buttonOk.className = "ms-2";
-buttonOk.classList.add("btn","btn-outline-success","ms-2","fs-8","btn-lg","p-3","my-2");
+buttonOk.classList.add("btn","btn-outline-success","ms-2","fs-6","my-3");
 const surrenderButton = document.createElement("button");
 surrenderButton.classList.add("btn","btn-outline-danger","btn-lg","w-50","ms-2","mt-2");
 buttonOk.innerHTML = "Enviar";
@@ -155,20 +153,40 @@ function validation(answer) {
 function surrender() {
     alert(`Has abandonado, puntos: ${localStorage.getItem(userLogin)}`);
     location.reload();
+    
 }
 
 function youLost() {
     alert(`Lo siento has perdido, puntos: ${localStorage.getItem(userLogin)}`);
     location.reload();
+    
 }
 
 function youWon() {  
     alert(`Has ganado el Juego, Tus puntos: ${localStorage.getItem(userLogin)}`);
     location.reload();
+    topPlayer();
+    
 }
 
-for (var i = 0; i < localStorage.length; i++) {
-    console.log(localStorage.getItem(localStorage.key(i)));
-  }
 
+  topPlayer();
+
+  function topPlayer() {
+    const containerRanking = document.createElement("div");
+    containerRanking.classList.add("d-flex","flex-column","justify-content-between","align-items-center");
+    const tabla = document.createElement("table");
+    tabla.classList.add("table","table-info","fs-5","w-25","ms-5");
+    const resultados = Object.entries({...localStorage});
+    resultados.forEach(resultado => {
+        const tr = document.createElement("tr");
+        tabla.append(tr);
+        const td1 = document.createElement("td");
+        const td2 = document.createElement("td");
+        td1.textContent = resultado[0];
+        td2.textContent = resultado[1];
+        tr.append(td1, td2);
+    });
+    container.append(tabla);
+}
 
