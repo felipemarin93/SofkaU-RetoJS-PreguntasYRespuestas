@@ -2,7 +2,7 @@ import { data } from "../db/data.js";
 import { player } from "./player.js";
 
 
-let welcomeMessage = window.alert('Bienvenid@ al Juego de preguntas y respuestas');
+window.alert('Bienvenid@ al Juego de preguntas y respuestas');
 
 let userLogin = "";
 
