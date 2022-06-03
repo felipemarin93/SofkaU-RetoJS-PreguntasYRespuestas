@@ -12,3 +12,6 @@ si respondes bien el juego te mostrará otra pregunta hasta llegar a la número 
 al final el juego muestra los jugadores y sus scores.
 
 Ha sido un gran reto y me ha costado poner a funcionar dicha app, espero la disfrutes.
+
+link Repo: https://github.com/felipemarin93/sofkaU-laboratorioJS-PreguntasYRespuestas
+Link app: https://sofka-preguntasyrespuestas.netlify.app
